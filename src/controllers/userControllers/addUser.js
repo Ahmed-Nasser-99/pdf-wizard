@@ -1,16 +1,7 @@
 const Users = require("../../database");
 
-// {
-//     email : "Awda",
-//     name : "awdaw",
-//     password : "aawdaw"
-// }
-
 function addUser(req, res) {
   const { email, name, password } = req.body;
-  //   const email = req.body.email;
-  //     const password = req.body.password
-  //     const name = req.body.name
 
   const newUser = {
     email,
@@ -18,6 +9,13 @@ function addUser(req, res) {
     password,
     id: Date.now(),
   };
+  console.log(!password);
+  if (!email || !name || !password) {
+    res.status(400).json({
+      status: "failed",
+      message: "send all required data",
+    });
+  }
   Users.push(newUser);
 
   res.status(200).json({
