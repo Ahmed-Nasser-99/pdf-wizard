@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const getUser = require("./src/controllers/userControllers/getUser");
 
 const app = express();
 
