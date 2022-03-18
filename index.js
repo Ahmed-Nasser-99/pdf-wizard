@@ -7,6 +7,8 @@ const app = express();
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
+app.get("/api/users/:id", getUser);
+
 app.get("/api/test", (req, res) => {
   console.log("Hi Guys");
   res.send({ message: "We are just testing" }).status(200);
