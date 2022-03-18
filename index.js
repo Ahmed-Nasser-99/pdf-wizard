@@ -1,11 +1,14 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const deleteUser = require("./src/controllers/userControllers/deleteUser");
 
 const app = express();
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.delete("/api/users/:id",deleteUser)
+
 
 app.get("/api/test", (req, res) => {
   console.log("Hi Guys");
