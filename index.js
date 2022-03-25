@@ -12,6 +12,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const addUser = require('./src/controllers/userControllers/addUser');
 const updateUser = require('./src/controllers/userControllers/updateUser');
+const getUser = require("./src/controllers/userControllers/getUser");
+
 
 
 
@@ -24,7 +26,10 @@ app.use(bodyParser.json());
 app.get("/api/test", (req, res) => {
   res.send({ message: "We are just testing" }).status(200);
 
+
+
 // get
+app.get("/api/users/:id", getUser);
 app.get('/api/test', (req, res) => {
   res.send({ message: 'We are just testing' }).status(200);
 
