@@ -14,7 +14,7 @@ function updateUser(req, res) {
 
   // console.log(Users);
   if (oldPassword !== Users[id].password) {
-    res.status(400).send({ message: 'you entered a wrong password' });
+    res.status(401).send({ message: 'you entered a wrong password' });
     return;
   }
   // change the value if the user provided it, otherwise keep the old value untouched
