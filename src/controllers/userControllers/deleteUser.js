@@ -1,12 +1,13 @@
-
-const Users = require("../../database")
-
+let Users = require("../../database");
 
 // DELETE /Users/{id}
 const deleteUser = (req, res) => {
-    const id = parseInt(req.params.id);
-    Users = Users.filter((user) => user.id !== id);
-    res.send({ status: "ok" });
-  };
+  const id = parseInt(req.params.id);
+  userId = Users.findIndex((user) => {
+    return user.id == id;
+  });
+  Users.splice(userId, 1);
+  res.send({ status: "ok" });
+};
 
-  module.exports = deleteUser
+module.exports = deleteUser;
