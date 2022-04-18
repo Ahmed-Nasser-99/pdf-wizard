@@ -1,27 +1,31 @@
-const Users = require("../../database");
+const User = require("../../models/userModel");
 
-function addUser(req, res) {
-  const { email, name, password } = req.body;
+async function addUser(req, res) {
+  try {
+    const { email, name, password } = req.body;
+    const user = await User.create({
+      email,
+      name,
+      password,
+    });
 
-  const newUser = {
-    email,
-    name,
-    password,
-    id: Date.now(),
-  };
-  console.log(!password);
-  if (!email || !name || !password) {
-    res.status(400).json({
+    if (!email || !name || !password) {
+      res.status(400).json({
+        status: "failed",
+        message: "send all required data",
+      });
+    }
+
+    res.status(200).json({
+      status: "ok",
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
       status: "failed",
-      message: "send all required data",
+      message: error.message,
     });
   }
-  Users.push(newUser);
-
-  res.status(200).json({
-    status: "ok",
-    data: newUser,
-  });
 }
 
 module.exports = addUser;
