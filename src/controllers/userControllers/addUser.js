@@ -8,6 +8,7 @@ async function addUser(req, res) {
       name,
       password,
     });
+    
 
     if (!email || !name || !password) {
       res.status(400).json({
