@@ -4,7 +4,6 @@
 
 | Variable  |     | example                                |
 | --------- | --- | -------------------------------------- |
-| MONGO_URI |     | [Link](mongodb://localhost:27020/mydb) |
+| MONGO_URI |     | mongodb://localhost:27020/mydb         |
 
 
-## n
