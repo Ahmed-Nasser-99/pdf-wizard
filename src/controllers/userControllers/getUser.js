@@ -1,8 +1,8 @@
-const Users = require("../../database");
+const User = require("../../models/userModel");
 
-const getUser = (req, res) => {
-  const id = parseInt(req.params.id);
-  const user = Users.find((user) => user.id === id);
+const getUser = await (req, res) => {
+  const {id} =req.params;
+  const user = await User.findById(id)
   if (user) {
     res.json({
       status: "ok",
