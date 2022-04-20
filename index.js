@@ -7,6 +7,7 @@ const addUser = require("./src/controllers/userControllers/addUser");
 const getAllUsers = require("./src/controllers/userControllers/getAllUsers");
 const updateUser = require("./src/controllers/userControllers/updateUser");
 const getUser = require("./src/controllers/userControllers/getUser");
+const postFile = require("./src/controllers/fileControllers/postFile");
 const connectDB = require("./src/database");
 
 dotenv.config({ path: "./.env" });
@@ -21,6 +22,8 @@ app.get("/api/users/:id", getUser);
 app.get("/api/users", getAllUsers);
 app.post("/api/users", addUser);
 app.put("/api/users/:id", updateUser);
+
+app.post("/api/files", postFile);
 
 app.listen(8080, () => {
   console.log("Server is running on http://localhost:8080");
