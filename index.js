@@ -10,7 +10,7 @@ const getUser = require("./src/controllers/userControllers/getUser");
 const postFile = require("./src/controllers/fileControllers/postFile");
 const connectDB = require("./src/database");
 
-const { protect } = require("./src/utils/authGard");
+const { protect } = require("./src/utils/authGuard");
 
 dotenv.config({ path: "./.env" });
 connectDB();
