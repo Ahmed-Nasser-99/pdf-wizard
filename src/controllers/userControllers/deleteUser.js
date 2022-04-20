@@ -1,12 +1,11 @@
-let Users = require("../../database");
+const Users = require("../../database");
+const User = require("../../models/userModel");
 
 // DELETE /Users/{id}
-const deleteUser = (req, res) => {
-  const id = parseInt(req.params.id);
-  userId = Users.findIndex((user) => {
-    return user.id == id;
-  });
-  Users.splice(userId, 1);
+const deleteUser = async(req, res) => {
+  const id = (req.params.id);
+  const user = await User.deleteOne({ _id: id });
+  
   res.send({ status: "ok" });
 };
 
