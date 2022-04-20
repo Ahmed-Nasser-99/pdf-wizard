@@ -9,6 +9,10 @@ const pdfSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  fileId:{
+    type: String,
+    required: true
+  },
   link: {
     type: String,
     required: true,
