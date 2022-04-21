@@ -15,6 +15,29 @@ const userSchema = mongoose.Schema({
   },
 });
 
+
+
+userSchema.pre("save", async function (next) {
+  const user = this;
+  if (!user.isModified("password")) {
+    return next();
+  }
+  await bcrypt
+    .hash(user.password, 10)
+    .then((hash) => {
+      user.password = hash;
+      next();
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
+userSchema.methods.authenticate = function (password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
