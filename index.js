@@ -43,11 +43,11 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 
 app.post("/api/users/login", login);
-app.get("/api/users", getAllUsers);
 app.post("/api/users/register", register);
 
 app.use(protect)
 
+app.get("/api/users", getAllUsers);
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
 app.get("/api/files/:id", getFile);
