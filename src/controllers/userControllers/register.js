@@ -1,6 +1,7 @@
 const User = require("../../models/userModel");
+const { signIn } = require("../../utils/authGuard");
 
-async function addUser(req, res) {
+async function register(req, res) {
   try {
     const { email, name, password } = req.body;
     const user = await User.create({
@@ -8,7 +9,6 @@ async function addUser(req, res) {
       name,
       password,
     });
-    
 
     if (!email || !name || !password) {
       res.status(400).json({
@@ -16,10 +16,10 @@ async function addUser(req, res) {
         message: "send all required data",
       });
     }
-
+    const token = signIn(user.id);
     res.status(200).json({
       status: "ok",
-      data: user,
+      data: { user, token },
     });
   } catch (error) {
     res.status(500).json({
@@ -29,4 +29,4 @@ async function addUser(req, res) {
   }
 }
 
-module.exports = addUser;
+module.exports = register;

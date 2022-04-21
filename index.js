@@ -3,10 +3,10 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const deleteUser = require("./src/controllers/userControllers/deleteUser");
-const addUser = require("./src/controllers/userControllers/addUser");
+const register = require("./src/controllers/userControllers/register");
 const getAllUsers = require("./src/controllers/userControllers/getAllUsers");
 const updateUser = require("./src/controllers/userControllers/updateUser");
-const getUser = require("./src/controllers/userControllers/getUser");
+const login = require("./src/controllers/userControllers/login");
 const postFile = require("./src/controllers/fileControllers/postFile");
 const getAllFiles = require("./src/controllers/fileControllers/getAllFiles");
 
@@ -36,9 +36,9 @@ if (!process.env.API_KEY) {
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
-app.get("/api/users/:id", getUser);
+app.post("/api/users/login", login);
 app.get("/api/users", getAllUsers);
-app.post("/api/users", addUser);
+app.post("/api/users/register", register);
 
 app.use(protect)
 
