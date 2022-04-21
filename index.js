@@ -8,6 +8,8 @@ const getAllUsers = require("./src/controllers/userControllers/getAllUsers");
 const updateUser = require("./src/controllers/userControllers/updateUser");
 const getUser = require("./src/controllers/userControllers/getUser");
 const postFile = require("./src/controllers/fileControllers/postFile");
+const getAllFiles = require("./src/controllers/fileControllers/getAllFiles");
+
 const connectDB = require("./src/database");
 const { protect } = require("./src/utils/authGard");
 
@@ -28,6 +30,7 @@ app.use(protect)
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
 app.post("/api/files", postFile);
+app.get("/api/files", getAllFiles);
 
 app.listen(8080, () => {
   console.log("Server is running on http://localhost:8080");
