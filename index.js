@@ -10,6 +10,7 @@ const login = require("./src/controllers/userControllers/login");
 const postFile = require("./src/controllers/fileControllers/postFile");
 const getAllFiles = require("./src/controllers/fileControllers/getAllFiles");
 const getFile = require("./src/controllers/fileControllers/getFile");
+const updateFile = require("./src/controllers/fileControllers/updateFile");
 
 const connectDB = require("./src/database");
 const upload = require("./src/utils/multer")
@@ -49,6 +50,7 @@ app.put("/api/users/:id", updateUser);
 app.post("/api/files", postFile);
 app.get("/api/files/:id", getFile);
 app.get("/api/files", getAllFiles);
+app.put("/api/files/:id", updateFile);
 app.post("/api/files",upload.single("file"), postFile);
 
 app.listen(8080, () => {
