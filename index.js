@@ -11,9 +11,12 @@ const postFile = require("./src/controllers/fileControllers/postFile");
 const getAllFiles = require("./src/controllers/fileControllers/getAllFiles");
 const getFile = require("./src/controllers/fileControllers/getFile");
 const updateFile = require("./src/controllers/fileControllers/updateFile");
+const convertFile = require("./src/controllers/fileControllers/convertFile")
+
 
 const connectDB = require("./src/database");
 const upload = require("./src/utils/multer")
+const convert = require('./src/utils/converter')
 
 const { protect } = require("./src/utils/authGuard");
 
@@ -47,11 +50,11 @@ app.use(protect)
 
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
-app.post("/api/files", postFile);
 app.get("/api/files/:id", getFile);
 app.get("/api/files", getAllFiles);
 app.put("/api/files/:id", updateFile);
 app.post("/api/files",upload.single("file"), postFile);
+app.post("/api/files/convert",upload.single("file"),convert, convertFile);
 
 app.listen(8080, () => {
   console.log("Server is running on http://localhost:8080");
