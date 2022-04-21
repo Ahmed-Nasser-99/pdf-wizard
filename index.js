@@ -8,6 +8,8 @@ const getAllUsers = require("./src/controllers/userControllers/getAllUsers");
 const updateUser = require("./src/controllers/userControllers/updateUser");
 const getUser = require("./src/controllers/userControllers/getUser");
 const postFile = require("./src/controllers/fileControllers/postFile");
+const getAllFiles = require("./src/controllers/fileControllers/getAllFiles");
+
 const connectDB = require("./src/database");
 const upload = require("./src/utils/multer")
 
@@ -42,6 +44,8 @@ app.use(protect)
 
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
+app.post("/api/files", postFile);
+app.get("/api/files", getAllFiles);
 app.post("/api/files",upload.single("file"), postFile);
 
 app.listen(8080, () => {
