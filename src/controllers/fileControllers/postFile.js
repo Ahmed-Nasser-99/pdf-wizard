@@ -9,8 +9,9 @@ async function postFile(req, res) {
     const fileData = {
       name: req.file.originalname,
       link: result.secure_url,
+      userId: req.userId,
       description: req.body.description,
-      fileId: result.asset_id,
+      fileId: result.public_id,
     };
     const pdf = await Pdf.create(fileData);
     res.send({ status: "OK", data: pdf }).status(201);
