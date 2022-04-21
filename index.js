@@ -9,11 +9,13 @@ const updateUser = require("./src/controllers/userControllers/updateUser");
 const login = require("./src/controllers/userControllers/login");
 const postFile = require("./src/controllers/fileControllers/postFile");
 const getAllFiles = require("./src/controllers/fileControllers/getAllFiles");
+const getFile = require("./src/controllers/fileControllers/getFile");
 
 const connectDB = require("./src/database");
 const upload = require("./src/utils/multer")
 
 const { protect } = require("./src/utils/authGuard");
+
 
 dotenv.config({ path: "./.env" });
 connectDB();
@@ -45,6 +47,7 @@ app.use(protect)
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
 app.post("/api/files", postFile);
+app.get("/api/files/:id", getFile);
 app.get("/api/files", getAllFiles);
 app.post("/api/files",upload.single("file"), postFile);
 
