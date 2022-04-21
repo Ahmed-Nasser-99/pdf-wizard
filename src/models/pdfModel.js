@@ -7,7 +7,7 @@ const pdfSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   fileId:{
     type: String,
@@ -22,6 +22,7 @@ const pdfSchema = mongoose.Schema({
     required: true,
     ref: 'user',
   },
+}, {
   timestamps: true,
 });
 
