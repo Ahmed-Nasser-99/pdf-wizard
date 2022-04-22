@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-5 border ">
       <Link className="navbar-brand" to="/">
-        Navbar
+        PDF Wizard
       </Link>
       <button
         className="navbar-toggler"
