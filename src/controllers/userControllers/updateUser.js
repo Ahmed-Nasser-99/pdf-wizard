@@ -8,9 +8,11 @@ async function updateUser(req, res) {
   const user = await User.findById(id);
 
   // console.log(Users);
-  if (oldPassword !== user.password) {
-    res.status(401).send({ message: 'you entered a wrong password' });
-    return;
+  if (!user.authenticate(oldPassword)) {
+    return res.status(401).json({
+      status: "failed",
+      message: "Invalid password",
+    });
   }
   // change the value if the user provided it, otherwise keep the old value untouched
   user.email = email || user.email;
