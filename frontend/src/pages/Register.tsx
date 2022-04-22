@@ -30,7 +30,7 @@ export default function Register() {
     try {
       setLoading(true);
       const data = await axios.post(
-        "http://localhost:8080/api/users/register",
+        "https://pdfwizard.herokuapp.com/api/users/register",
         {
           email,
           password,

@@ -22,7 +22,7 @@ function Login() {
     try {
       setLoading(true);
 
-      const data = await axios.post("http://localhost:8080/api/users/login", {
+      const data = await axios.post("https://pdfwizard.herokuapp.com/api/users/login", {
         email,
         password,
       });

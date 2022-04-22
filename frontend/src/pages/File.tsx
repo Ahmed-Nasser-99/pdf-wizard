@@ -19,7 +19,7 @@ export default function File() {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:8080/api/files/${id}`, {
+        .get(`https://pdfwizard.herokuapp.com/api/files/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -40,7 +40,7 @@ export default function File() {
     e.preventDefault();
     axios
       .put(
-        "http://localhost:8080/api/files/" + file.id,
+        "https://pdfwizard.herokuapp.com/api/files/" + file.id,
         {
           name,
           description,
