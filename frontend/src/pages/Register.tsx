@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const [loading, setLoading] = React.useState(false);
+
   const [isUser, setIsUser] = React.useState(
     localStorage.getItem("userId") ? true : false
   );
@@ -19,11 +21,14 @@ export default function Register() {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError("");
+
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
     try {
+      setLoading(true);
       const data = await axios.post(
         "http://localhost:8080/api/users/register",
         {
@@ -32,6 +37,7 @@ export default function Register() {
           name,
         }
       );
+      setLoading(false);
       setError("");
 
       localStorage.setItem("token", data.data.data.token);
@@ -44,6 +50,7 @@ export default function Register() {
   };
   return (
     <form onSubmit={onSubmit}>
+      {loading && <p className="alert alert-info">Loading...</p>}
       {error && <p className="alert alert-danger">{error}</p>}
       <div className="form-group">
         <label>Email address</label>

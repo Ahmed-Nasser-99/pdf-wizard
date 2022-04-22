@@ -24,7 +24,7 @@ export default function Lib() {
       })
       .then((res: any) => {
         setLoading(false);
-        setFiles((currFiles: any[]) => [...currFiles, ...res.data.data]);
+        setFiles(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -114,13 +114,14 @@ export default function Lib() {
                 loading="lazy"
               />
               <p className="card-text">{file.description}</p>
-              <Link
-                to={file.link}
+              <a
+                href={file.link}
                 className="card-link btn btn-primary"
                 download={true}
+                target="_blank"
               >
                 Download
-              </Link>
+              </a>
               <div
                 className="card-link btn btn-danger"
                 onClick={async () => {

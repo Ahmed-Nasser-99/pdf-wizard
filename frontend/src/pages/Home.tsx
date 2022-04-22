@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [isUser] = React.useState(
@@ -20,14 +21,14 @@ export default function Home() {
         of Lorem Ipsum.
       </div>
       {!isUser && (
-        <>
-          <a href="./login.html" className="btn btn-primary ">
+        <div className="my-3">
+          <Link to="/login" className="btn btn-secondary">
             Login
-          </a>
-          <a href="./register.html" className="btn btn-primary mx-2">
+          </Link>
+          <Link to="/register" className="btn btn-secondary mx-3">
             Register
-          </a>
-        </>
+          </Link>
+        </div>
       )}
     </div>
   );

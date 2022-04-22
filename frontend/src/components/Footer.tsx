@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function Footer() {
+export default function Footer() { 
+
   return (
     <div className="footer w-100 text-center bg-secondary p-2 text-light d-flex justify-content-center align-items-center">
       <div>
