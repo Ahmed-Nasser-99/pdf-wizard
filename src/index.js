@@ -2,23 +2,23 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
-const deleteUser = require("./src/controllers/userControllers/deleteUser");
-const register = require("./src/controllers/userControllers/register");
-const getAllUsers = require("./src/controllers/userControllers/getAllUsers");
-const updateUser = require("./src/controllers/userControllers/updateUser");
-const login = require("./src/controllers/userControllers/login");
-const postFile = require("./src/controllers/fileControllers/postFile");
-const getAllFiles = require("./src/controllers/fileControllers/getAllFiles");
-const getFile = require("./src/controllers/fileControllers/getFile");
-const updateFile = require("./src/controllers/fileControllers/updateFile");
-const convertFile = require("./src/controllers/fileControllers/convertFile")
+const deleteUser = require("./controllers/userControllers/deleteUser");
+const register = require("./controllers/userControllers/register");
+const getAllUsers = require("./controllers/userControllers/getAllUsers");
+const updateUser = require("./controllers/userControllers/updateUser");
+const login = require("./controllers/userControllers/login");
+const postFile = require("./controllers/fileControllers/postFile");
+const getAllFiles = require("./controllers/fileControllers/getAllFiles");
+const getFile = require("./controllers/fileControllers/getFile");
+const updateFile = require("./controllers/fileControllers/updateFile");
+const convertFile = require("./controllers/fileControllers/convertFile")
 
 
-const connectDB = require("./src/database");
-const upload = require("./src/utils/multer")
-const convert = require('./src/utils/converter')
+const connectDB = require("./database");
+const upload = require("./utils/multer")
+const convert = require('./utils/converter')
 
-const { protect } = require("./src/utils/authGuard");
+const { protect } = require("./utils/authGuard");
 
 
 dotenv.config({ path: "./.env" });
@@ -40,14 +40,14 @@ if (!process.env.API_KEY) {
 }
 
 app.use(morgan("dev"));
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.post("/api/users/login", login);
+app.get("/api/users", getAllUsers);
 app.post("/api/users/register", register);
 
 app.use(protect)
 
-app.get("/api/users", getAllUsers);
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
 app.get("/api/files/:id", getFile);
