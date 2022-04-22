@@ -17,7 +17,7 @@ export default function Lib() {
   useEffect(() => {
     let data;
     axios
-      .get("http://localhost:8080/api/files", {
+      .get("https://pdfwizard.herokuapp.com/api/files", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -45,7 +45,7 @@ export default function Lib() {
       data.append("file", e.currentTarget.file.value);
       data.append("description", description);
       const resData = await axios.post(
-        "http://localhost:8080/api/files",
+        "https://pdfwizard.herokuapp.com/api/files",
         data,
         {
           headers: {
@@ -127,7 +127,7 @@ export default function Lib() {
                 onClick={async () => {
                   try {
                     await axios.delete(
-                      `http://localhost:8080/api/files/${file._id}`,
+                      `https://pdfwizard.herokuapp.com/api/files/${file._id}`,
                       {
                         headers: {
                           Authorization: `Bearer ${localStorage.getItem(

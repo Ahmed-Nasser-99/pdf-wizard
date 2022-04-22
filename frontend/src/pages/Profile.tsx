@@ -16,7 +16,7 @@ export default function Profile() {
   React.useEffect(() => {
     document.title = "Profile";
     axios
-      .get("http://localhost:8080/api/users/profile", {
+      .get("https://pdfwizard.herokuapp.com/api/users/profile", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
