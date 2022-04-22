@@ -1,6 +1,7 @@
 const User = require("../../models/userModel");
 const { signIn } = require("../../utils/authGuard");
 
+
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
@@ -11,7 +12,7 @@ const login = async (req, res) => {
     });
   }
   if (!user.authenticate(password)) {
-    return res.status(400).json({
+    return res.status(401).json({
       status: "failed",
       message: "Invalid password",
     });
