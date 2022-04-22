@@ -5,7 +5,7 @@ async function updateFile(req, res) {
    
     const file = await Pdf.findOne({
       userId: req.user.id,
-      fileId: req.params.id
+      id: req.params.id
     });
    
     if(file){
