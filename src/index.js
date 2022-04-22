@@ -19,6 +19,7 @@ const upload = require("./utils/multer")
 const convert = require('./utils/converter')
 
 const { protect } = require("./utils/authGuard");
+const deleteFile = require("./controllers/fileControllers/deleteFile");
 
 
 dotenv.config({ path: "./.env" });
@@ -50,6 +51,7 @@ app.use(protect)
 
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
+app.delete("/api/files/:id",deleteFile);
 app.get("/api/files/:id", getFile);
 app.get("/api/files", getAllFiles);
 app.put("/api/files/:id", updateFile);
