@@ -40,7 +40,11 @@ if (!process.env.API_KEY) {
 
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors())
+app.use(cors({        origin: [
+  'http://localhost:3000',
+],
+optionsSuccessStatus: 200,
+credentials: true,}))
 
 app.get('/api',(req,res)=>{
   res.send('Yay, server is running')
