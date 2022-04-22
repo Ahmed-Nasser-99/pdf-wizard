@@ -19,7 +19,9 @@ const upload = require("./utils/multer")
 const convert = require('./utils/converter')
 
 const { protect } = require("./utils/authGuard");
+
 const deleteFile = require("./controllers/fileControllers/deleteFile");
+
 
 
 dotenv.config({ path: "./.env" });
@@ -42,6 +44,9 @@ if (!process.env.API_KEY) {
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.get('/api',(req,res)=>{
+  res.send('Yay, server is running')
+})
 
 app.post("/api/users/login", login);
 app.get("/api/users", getAllUsers);
@@ -58,6 +63,7 @@ app.put("/api/files/:id", updateFile);
 app.post("/api/files",upload.single("file"), postFile);
 app.post("/api/files/convert",upload.single("file"),convert, convertFile);
 
-app.listen(8080, () => {
-  console.log("Server is running on http://localhost:8080");
+
+app.listen(process.env.PORT || 8080,'0.0.0.0', () => {
+  console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
