@@ -57,7 +57,7 @@ export default function Header() {
           </li>{" "}
           <li className="nav-item">
             {isUser && (
-              <Link className="nav-link " to="/myprofile">
+              <Link className="nav-link " to="/profile">
                 My Profile
               </Link>
             )}
