@@ -12,17 +12,13 @@ const getAllFiles = require("./controllers/fileControllers/getAllFiles");
 const getFile = require("./controllers/fileControllers/getFile");
 const updateFile = require("./controllers/fileControllers/updateFile");
 const convertFile = require("./controllers/fileControllers/convertFile")
-
+const cors = require('cors')
 
 const connectDB = require("./database");
 const upload = require("./utils/multer")
 const convert = require('./utils/converter')
-
 const { protect } = require("./utils/authGuard");
-
 const deleteFile = require("./controllers/fileControllers/deleteFile");
-
-
 
 dotenv.config({ path: "./.env" });
 connectDB();
@@ -44,6 +40,8 @@ if (!process.env.API_KEY) {
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors())
+
 app.get('/api',(req,res)=>{
   res.send('Yay, server is running')
 })
