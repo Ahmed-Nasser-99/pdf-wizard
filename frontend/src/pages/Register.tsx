@@ -45,6 +45,7 @@ export default function Register() {
       setIsUser(true);
       navigate("/");
     } catch (error: any) {
+      setLoading(false);
       setError(error.response.data.message);
     }
   };
@@ -57,7 +58,6 @@ export default function Register() {
         <input
           type="email"
           className="form-control"
-          id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Enter email"
           value={email}
@@ -72,7 +72,6 @@ export default function Register() {
         <input
           type="text"
           className="form-control"
-          id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Enter Name"
           value={name}
@@ -84,7 +83,6 @@ export default function Register() {
         <input
           type="password"
           className="form-control"
-          id="exampleInputPassword1"
           placeholder="Password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
@@ -95,7 +93,6 @@ export default function Register() {
         <input
           type="password"
           className="form-control"
-          id="exampleInputPassword1"
           placeholder="Password"
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
