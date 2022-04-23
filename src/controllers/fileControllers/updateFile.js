@@ -4,10 +4,14 @@ async function updateFile(req, res) {
   try{
    
     const file = await Pdf.findOne({
-      userId: req.user.id,
       id: req.params.id
     });
-   
+      if(file.userId.equals(req.user._id))
+    {
+      return res.status(404).json({
+        status: "No file exist with this id"
+        })
+    }
     if(file){
       file.name = name
       file.description = description
