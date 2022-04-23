@@ -40,14 +40,16 @@ if (!process.env.API_KEY) {
 
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors({        origin: [
-  'http://localhost:3000',
-],
-optionsSuccessStatus: 200,
-credentials: true,}))
+app.use(cors({origin:'https://pdf-wizard-m8ubso09s-ahmed-nasser-99.vercel.app'}))
+app.use((req, res, next)=>{
+  app.options('*', cors())
+res.header("Access-Control-Allow-Origin", "*") 
+  next();
+ }
+);
 
 app.get('/api',(req,res)=>{
-  res.send('Yay, server is running')
+  res.send('Yay, server is running..')
 })
 
 app.post("/api/users/login", login);
