@@ -44,6 +44,7 @@ export default function Lib() {
       const data = new FormData(e.currentTarget);
       data.append("file", e.currentTarget.file.value);
       data.append("description", description);
+      setLoading(true);
       const resData = await axios.post(
         "https://pdfwizard.herokuapp.com/api/files",
         data,
@@ -54,8 +55,9 @@ export default function Lib() {
           },
         }
       );
-      console.log(resData.data.data);
+
       setFiles((currFiles: any[]) => [...currFiles, resData.data.data]);
+      setLoading(false);
     } catch (error: any) {
       setError(error.response.data.message);
     }
@@ -93,6 +95,7 @@ export default function Lib() {
               placeholder="Enter file"
               value={file}
               name="file"
+              required
               onChange={(event: any) => setFile(event.target.file)}
             />
             <button type="submit" className="btn btn-primary my-3">
@@ -101,7 +104,7 @@ export default function Lib() {
           </div>
         </form>
       </div>
-      <div className="d-flex flex-wrap justify-content-between ">
+      <div className="d-flex flex-wrap justify-content-center">
         {files.map((file: any) => (
           <div className="card my-3 mx-2 w-30 w-md-100 " key={file.id}>
             <div className="card-body">
@@ -167,6 +170,11 @@ export default function Lib() {
           ></div>
         )}
       </div>
+      {!loading && files.length === 0 && (
+        <div className="alert alert-info">
+          <h2>No files found</h2>
+        </div>
+      )}
     </>
   );
 }
