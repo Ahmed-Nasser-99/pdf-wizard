@@ -8,13 +8,13 @@ const login = async (req, res) => {
   if (!user) {
     return res.status(400).json({
       status: "failed",
-      message: "User not found",
+      message: "email or password is incorrect",
     });
   }
   if (!user.authenticate(password)) {
     return res.status(401).json({
       status: "failed",
-      message: "Invalid password",
+      message: "email or password is incorrect",
     });
   }
   const token = signIn(user.id);
