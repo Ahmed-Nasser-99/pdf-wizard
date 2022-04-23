@@ -95,7 +95,7 @@ export default function Lib() {
               placeholder="Enter file"
               value={file}
               name="file"
-              required
+              required={true}
               onChange={(event: any) => setFile(event.target.file)}
             />
             <button type="submit" className="btn btn-primary my-3">
