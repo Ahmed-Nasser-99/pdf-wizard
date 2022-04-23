@@ -40,7 +40,7 @@ if (!process.env.API_KEY) {
 
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors({origin:'https://pdf-wizard-m8ubso09s-ahmed-nasser-99.vercel.app'}))
+app.use(cors({origin:'*'}))
 app.use((req, res, next)=>{
   app.options('*', cors())
 res.header("Access-Control-Allow-Origin", "*") 
