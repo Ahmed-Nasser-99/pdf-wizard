@@ -22,10 +22,13 @@ function Login() {
     try {
       setLoading(true);
 
-      const data = await axios.post("https://pdfwizard.herokuapp.com/api/users/login", {
-        email,
-        password,
-      });
+      const data = await axios.post(
+        "https://pdfwizard.herokuapp.com/api/users/login",
+        {
+          email,
+          password,
+        }
+      );
       setError("");
       setLoading(false);
       localStorage.setItem("token", data.data.data.token);
@@ -33,6 +36,7 @@ function Login() {
       setIsUser(true);
       navigate("/");
     } catch (error: any) {
+      setLoading(false);
       setError(error.response.data.message);
     }
   };
