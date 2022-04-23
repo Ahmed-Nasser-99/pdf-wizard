@@ -71,7 +71,14 @@ export default function Header() {
                   My Lib
                 </Link>
               )}
-            </li>{" "}
+            </li>
+              <li className="nav-item">
+              {isUser && (
+                <Link className="nav-link " to="/converter">
+                  Convert File
+                </Link>
+              )}
+            </li>
             <li className="nav-item">
               {isUser && (
                 <Link className="nav-link " to="/profile">
