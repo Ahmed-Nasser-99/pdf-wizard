@@ -21,7 +21,7 @@ function FileConverter() {
       const data = new FormData(e.currentTarget);
       data.append("file", e.currentTarget.file.value);
       data.append("description", description);
-      const resData = await axios.post(
+      await axios.post(
         "https://pdfwizard.herokuapp.com/api/files/convert",
         data,
         {
@@ -35,6 +35,7 @@ function FileConverter() {
       navigate(`/myfiles`);
     } catch (error: any) {
       setError(error.response.data.message);
+      setLoading(false);
     }
   };
   return (

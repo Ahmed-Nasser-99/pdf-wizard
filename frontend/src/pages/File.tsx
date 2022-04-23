@@ -28,11 +28,12 @@ export default function File() {
         })
         .then((res) => {
           setFile(res.data.data);
-          setDescription(res.data.data.description);
+          setDescription(res.data.data.description || "");
           setName(res.data.data.name);
           setLoading(false);
         });
     } catch (error: any) {
+      setLoading(false);
       console.log(error.response.data.message);
       alert("error");
       setError(error.response.data.message);
@@ -42,10 +43,10 @@ export default function File() {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
+    
     axios
       .put(
-        "https://pdfwizard.herokuapp.com/api/files/" + file.id,
+        "https://pdfwizard.herokuapp.com/api/files/" + file._id,
         {
           name,
           description,
@@ -58,8 +59,10 @@ export default function File() {
       )
       .then((res) => {
         setLoading(false);
-
         setFile(res.data.data);
+        navigate("/myfiles");
+      }).catch(() => {
+        setLoading(false);
       });
   };
   return (
@@ -94,8 +97,11 @@ export default function File() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary" style={{marginRight: 4}}>
                 Submit
+              </button>
+              <button onClick={() => navigate("/myfiles")} className="btn btn-secondary">
+                Cancel
               </button>
             </div>
           </form>

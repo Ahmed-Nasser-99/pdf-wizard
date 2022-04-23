@@ -2,12 +2,8 @@ const Pdf = require("../../models/pdfModel");
 async function updateFile(req, res) {
   const { name, description } = req.body;
   try {
-    const file = await Pdf.findOne({
-      id: req.params.id,
-      userId: req.user._id,
-    });
-
-    if (file) {
+    const file = await Pdf.findById(req.params.id);
+    if (file && file.userId.equals(req.user._id)) {
       file.name = name || file.name;
       file.description = description || file.description;
       await file.save();

@@ -15,7 +15,6 @@ export default function Lib() {
   }, [isUser, navigate]);
 
   useEffect(() => {
-    let data;
     axios
       .get("https://pdfwizard.herokuapp.com/api/files", {
         headers: {
@@ -28,9 +27,9 @@ export default function Lib() {
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
 
-    console.log(data);
   }, [isUser, navigate]);
 
   const [file, setFile] = React.useState<any>();
@@ -55,11 +54,14 @@ export default function Lib() {
           },
         }
       );
-
+      setDescription("");
+      let fileInput = document.getElementById("file") as HTMLInputElement;
+      fileInput!.value = "";
       setFiles((currFiles: any[]) => [...currFiles, resData.data.data]);
       setLoading(false);
     } catch (error: any) {
       setError(error.response.data.message);
+      setLoading(false);
     }
   };
 
@@ -106,7 +108,7 @@ export default function Lib() {
       </div>
       <div className="d-flex flex-wrap justify-content-center">
         {files.map((file: any) => (
-          <div className="card my-3 mx-2 w-30 w-md-100 " key={file.id}>
+          <div className="card my-3 mx-2 w-30 w-md-100 " key={file._id}>
             <div className="card-body">
               <div className="card-title">{file.name}</div>
               <img

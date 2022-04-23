@@ -1,11 +1,8 @@
 const Pdf = require("../../models/pdfModel");
 async function getFile(req, res) {
   try {
-    const file = await Pdf.findOne({
-      _id: req.params.id,
-      userId: req.user._id,
-    });
-    if (file) {
+    const file = await Pdf.findById(req.params.id);
+    if (file && file.userId.equals(req.user._id)) {
       res.status(200).json({
         status: "ok",
         data: file,

@@ -69,5 +69,5 @@ app.post("/api/files/convert",upload.single("file"),convert, convertFile);
 
 
 app.listen(process.env.PORT || 8080,'0.0.0.0', () => {
-  console.log(`Server is running on http://localhost:${process.env.PORT}`);
+  console.log(`Server is running on http://localhost:${process.env.PORT || 8080}`);
 });

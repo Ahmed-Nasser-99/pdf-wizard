@@ -3,11 +3,8 @@ const Pdf = require("../../models/pdfModel");
 
 async function deleteFile(req, res) {
   try {
-    const file = await Pdf.findOne({
-      _id: req.params.id,
-      userId: req.user._id,
-    });
-    if (file) {
+    const file = await Pdf.findById(req.params.id);
+    if (file && file.userId.equals(req.user._id)) {
       await file.delete();
       res.status(204).json({
         status: "ok",
