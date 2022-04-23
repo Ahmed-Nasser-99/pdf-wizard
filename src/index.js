@@ -12,6 +12,8 @@ const getAllFiles = require("./controllers/fileControllers/getAllFiles");
 const getFile = require("./controllers/fileControllers/getFile");
 const updateFile = require("./controllers/fileControllers/updateFile");
 const convertFile = require("./controllers/fileControllers/convertFile")
+const getProfile = require("./controllers/userControllers/getProfile");
+
 const cors = require('cors')
 
 const connectDB = require("./database");
@@ -57,7 +59,7 @@ app.get("/api/users", getAllUsers);
 app.post("/api/users/register", register);
 
 app.use(protect)
-
+app.get("/api/users/profile", getProfile);
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
 app.delete("/api/files/:id",deleteFile);
