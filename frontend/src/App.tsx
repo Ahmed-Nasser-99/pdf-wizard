@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
-
+import FileConverter from "./pages/FileConverter";
 import Header from "./components/Header";
 import File from "./pages/File";
 import Home from "./pages/Home";
@@ -22,6 +22,7 @@ function App() {
           <Route path="/myfiles" element={<Lib />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/files/:id" element={<File />} />
+          <Route path="/converter" element={<FileConverter />} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
       </div>
