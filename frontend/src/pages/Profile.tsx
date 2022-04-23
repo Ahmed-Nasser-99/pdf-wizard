@@ -131,7 +131,7 @@ export default function Profile() {
                   })
                   
 
-            }}>
+            }}}>
               Submit
             </button>
           </form>
