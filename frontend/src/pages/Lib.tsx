@@ -101,7 +101,7 @@ export default function Lib() {
           </div>
         </form>
       </div>
-      <div className="d-flex flex-wrap justify-content-center ">
+      <div className="d-flex flex-wrap justify-content-between ">
         {files.map((file: any) => (
           <div className="card my-3 mx-2 w-30 w-md-100 " key={file.id}>
             <div className="card-body">
