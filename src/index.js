@@ -55,10 +55,10 @@ app.get('/api',(req,res)=>{
 })
 
 app.post("/api/users/login", login);
-app.get("/api/users", getAllUsers);
 app.post("/api/users/register", register);
 
 app.use(protect)
+app.get("/api/users", getAllUsers);
 app.get("/api/users/profile", getProfile);
 app.delete("/api/users/:id", deleteUser);
 app.put("/api/users/:id", updateUser);
